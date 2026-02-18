@@ -24,7 +24,6 @@ public class ProductService {
                  productRepo.save(product);
                  return "Product saved successfully.";
         }
-       
-
     }
+    
 }
