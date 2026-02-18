@@ -51,4 +51,15 @@ public class ProductService {
         }
     }
 
+    public String deleteProduct(Long id) {
+        Optional<Product> existingProduct = productRepo.findById(id);
+
+        if (existingProduct.isPresent()) {
+            productRepo.deleteById(id);
+            return "Product deleted successfully.";
+        } else {
+            return "Product with id " + id + " not found.";
+        }
+    }
+
 }
