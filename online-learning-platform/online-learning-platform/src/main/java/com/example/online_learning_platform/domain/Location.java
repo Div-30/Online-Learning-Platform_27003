@@ -27,6 +27,10 @@ public class Location {
     @Column(name = "name")
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private ELocationType type;
+
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Location parent;
@@ -55,18 +59,6 @@ public class Location {
         this.name = name;
     }
 
-    public Location getParent() {
-        return this.parent;
-    }
-
-    public void setParent(Location parent) {
-        this.parent = parent;
-    }
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    private ELocationType type;
-
     public ELocationType getType() {
         return this.type;
     }
@@ -75,4 +67,11 @@ public class Location {
         this.type = type;
     }
 
+    public Location getParent() {
+        return this.parent;
+    }
+
+    public void setParent(Location parent) {
+        this.parent = parent;
+    }
 }
