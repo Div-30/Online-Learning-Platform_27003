@@ -14,7 +14,7 @@ import com.example.online_learning_platform.domain.UserProfile;
 import com.example.online_learning_platform.service.UserProfileService;
 
 @RestController
-@RequestMapping("/api/Profiles")
+@RequestMapping("/api/profiles")
 public class UserProfileController {
     @Autowired
     private UserProfileService userProfileService;

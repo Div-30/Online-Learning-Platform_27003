@@ -1,8 +1,12 @@
 package com.example.online_learning_platform.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,15 +49,12 @@ public class Course {
     private LocalDateTime createdAt;
 
     @ManyToMany
-    @JoinTable(
-        name = "course_categories",
-        joinColumns = @JoinColumn(name = "course_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<Category> categories;
+    @JoinTable(name = "course_categories", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<Category> categories = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<Enrollment> enrollments;
+    private List<Enrollment> enrollments = new ArrayList<>();
 
     public UUID getId() {
         return this.id;
@@ -126,5 +127,5 @@ public class Course {
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
     }
-    
+
 }

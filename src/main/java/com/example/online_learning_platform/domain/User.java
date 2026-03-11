@@ -1,5 +1,6 @@
 package com.example.online_learning_platform.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import jakarta.persistence.CascadeType;
@@ -15,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -47,8 +49,9 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserProfile userProfile;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Enrollment> enrollments;
+    private List<Enrollment> enrollments = new ArrayList<>();
 
     public UUID getId() {
         return this.id;
@@ -121,5 +124,5 @@ public class User {
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
     }
-    
+
 }

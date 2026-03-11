@@ -71,4 +71,61 @@ public class UserController {
             return new ResponseEntity<>("No users found in the provided province.", HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping(value = "/searchByDistrict", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUsersByDistrict(
+            @RequestParam(required = false) String districtCode,
+            @RequestParam(required = false) String districtName) {
+
+        List<User> users = userService.getUsersByDistrict(districtCode, districtName);
+
+        if (users != null) {
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No users found in the provided district.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(value = "/searchBySector", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUsersBySector(
+            @RequestParam(required = false) String sectorCode,
+            @RequestParam(required = false) String sectorName) {
+
+        List<User> users = userService.getUsersBySector(sectorCode, sectorName);
+
+        if (users != null) {
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No users found in the provided sector.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(value = "/searchByCell", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUsersByCell(
+            @RequestParam(required = false) String cellCode,
+            @RequestParam(required = false) String cellName) {
+
+        List<User> users = userService.getUsersByCell(cellCode, cellName);
+
+        if (users != null) {
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No users found in the provided cell.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(value = "/searchByVillage", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUsersByVillage(
+            @RequestParam(required = false) String villageCode,
+            @RequestParam(required = false) String villageName) {
+
+        List<User> users = userService.getUsersByVillage(villageCode, villageName);
+
+        if (users != null) {
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No users found in the provided village.", HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

@@ -20,14 +20,19 @@ public class UserProfileService {
 
     public String saveUserProfile(UserProfile userProfile, String userId) {
 
-        Boolean checkProfile = userProfileRepository.existsByPhoneNumber(userProfile.getPhoneNumber());
-        if (checkProfile) {
-            return "A profile with this phone number already exists.";
-        }
-
         User user = userRepository.findById(UUID.fromString(userId)).orElse(null);
         if (user == null) {
             return "User not found.";
+        }
+
+        Boolean checkExistingProfile = userProfileRepository.existsByUserId(UUID.fromString(userId));
+        if (checkExistingProfile) {
+            return "This user already has a profile.";
+        }
+
+        Boolean checkPhone = userProfileRepository.existsByPhoneNumber(userProfile.getPhoneNumber());
+        if (checkPhone) {
+            return "A profile with this phone number already exists.";
         }
 
         userProfile.setUser(user);

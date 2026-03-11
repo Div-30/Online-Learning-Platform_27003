@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "categories")
@@ -24,6 +25,7 @@ public class Category {
     @Column(name = "description")
     private String description;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private List<Course> courses;
 
@@ -58,5 +60,5 @@ public class Category {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-    
+
 }

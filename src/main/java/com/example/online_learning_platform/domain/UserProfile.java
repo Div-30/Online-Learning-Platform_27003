@@ -1,6 +1,9 @@
 package com.example.online_learning_platform.domain;
 
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +30,7 @@ public class UserProfile {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)
     private User user;

@@ -9,6 +9,8 @@ import com.example.online_learning_platform.domain.UserProfile;
 
 @Repository
 public interface UserProfileRepository extends JpaRepository<UserProfile, UUID> {
+    Boolean existsByUserId(UUID userId);
+
     Boolean existsByPhoneNumber(String phoneNumber);
 
 }
